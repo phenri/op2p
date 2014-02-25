@@ -1,0 +1,44 @@
+// -*- mode: C++ -*-
+
+#include <algorithm>
+
+using namespace op2p;
+
+template <typename T>
+void MessageBus::subscribe(MessageReceiver* const pReceiver) {
+  std::lock_guard<std::mutex> g(receiversLock_);
+
+  auto it = receivers_.find(typeid(T));
+  if (it == receivers_.end()) {
+    receivers_.emplace(typeid(T), DequeMessageReceiverPtr{ pReceiver });
+  }
+  else {
+    it->second.emplace_back(pReceiver);
+  }
+}
+
+template <typename T>
+void MessageBus::unsubscribe(MessageReceiver* const pReceiver) {
+  std::lock_guard<std::mutex> g(receiversLock_);
+
+  auto ic = receivers_.find(typeid(T));
+  if (ic == receivers_.end()) return;
+  auto col = ic->second;
+
+  auto it = std::find(std::begin(col), std::end(col), pReceiver);
+  if (it != std::end(col)) {
+    col.erase(it);
+  }
+}
+
+template <typename T>
+void MessageBus::publish(const std::shared_ptr<Message>& pMessage) {
+  std::lock_guard<std::mutex> g(receiversLock_);
+
+  auto it = receivers_.find(typeid(T));
+  if (it == receivers_.end()) return;
+
+  for (auto r : it->second) {
+    r->receive(pMessage);
+  }
+}

@@ -1,0 +1,31 @@
+import platform
+import os
+
+ldflags = None
+libs    = ['CDataFile']
+libpath = ['../deps/CDataFile/lib']
+source  = ['main.cc', 'socketserver.cc', 'socketconnection.cc', 'settingsstore.cc',
+           'consolemanager.cc', 'messagebus.cc']
+cpppath = ['../include', '../deps/asio/include',
+           '../deps/CDataFile/include']
+target  = 'op2p'
+
+if platform.system() == 'Windows':
+    ldflags  = '/DEBUG'
+    ccflags  = '/DWIN32 /DASIO_STANDALONE /DASIO_HAS_IOCP /EHsc /Zi /Gy'
+    libs    += ['ws2_32', 'mswsock']
+    env      = Environment(CCFLAGS         = ccflags,
+                           CPPPATH         = cpppath,
+                           ENV             = os.environ,
+                           MSVC_USE_SCRIPT = None)
+else:
+    ccflags = '-std=c++11 -Wall -Wextra -Wno-write-strings -g -Og -DASIO_STANDALONE'
+    env     = Environment(CCFLAGS = ccflags,
+                          CPPPATH = cpppath,
+                          ENV     = os.environ)
+    
+env.Program(target    = target, 
+            source    = source,
+            LINKFLAGS = ldflags,
+            LIBPATH   = libpath,
+            LIBS      = libs)

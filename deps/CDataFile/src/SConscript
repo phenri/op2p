@@ -1,0 +1,21 @@
+import platform
+import os
+
+cpppath = ['../include']
+source  = ['CDataFile.cpp']
+target = 'CDataFile'
+
+if platform.system() == 'Windows':
+    ccflags = '/DWIN32 /EHsc /O2 /Gy'
+    env     = Environment(CCFLAGS         = ccflags,
+                          CPPPATH         = cpppath,
+                          ENV             = os.environ,
+                          MSVC_USE_SCRIPT = None)
+else:
+    ccflags = '-std=c++11 -Wall -Wextra -Wno-write-strings -O3 -msse2'
+    env     = Environment(CCFLAGS = ccflags,
+                          CPPPATH = cpppath,
+                          ENV     = os.environ)
+    
+env.Library(target = target, 
+            source = source)

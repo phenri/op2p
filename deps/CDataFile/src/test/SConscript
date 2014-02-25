@@ -1,0 +1,26 @@
+import platform
+import os
+
+ldflags = ''
+libs    = ['CDataFile']
+libpath = ['../lib']
+cpppath = ['../include']
+source  = ['DataFileTest.cpp']
+target  = 'DataFileTest'
+
+if platform.system() == 'Windows':
+    ccflags = '/DWIN32 /EHsc /O2 /Gy'
+    env     = Environment(CCFLAGS = ccflags,
+                          CPPPATH = cpppath,
+                          ENV     = os.environ)
+else:
+    ccflags = '-std=c++11 -Wall -Wextra -Wno-write-strings -O3 -msse2'
+    env = Environment(CCFLAGS = ccflags,
+                      CPPPATH = cpppath,
+                      ENV     = os.environ)
+
+env.Program(target    = target, 
+            source    = source,
+            LINKFLAGS = ldflags,
+            LIBPATH   = libpath,
+            LIBS      = libs)

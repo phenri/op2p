@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\consolemanager.hh" />
+    <ClInclude Include="..\include\consoleoutputmessage.hh" />
+    <ClInclude Include="..\include\message.hh" />
+    <ClInclude Include="..\include\messagebus.hh" />
+    <ClInclude Include="..\include\messagereceiver.hh" />
+    <ClInclude Include="..\include\settings.hh" />
+    <ClInclude Include="..\include\settingsstore.hh" />
+    <ClInclude Include="..\include\socketconnectionclosedmessage.hh" />
+    <ClInclude Include="..\include\socketinputmessage.hh" />
+    <ClInclude Include="..\include\socketoutputmessage.hh" />
+    <ClInclude Include="..\include\socketserver.hh" />
+    <ClInclude Include="..\include\socketconnection.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\consolemanager.cc" />
+    <ClCompile Include="..\src\main.cc" />
+    <ClCompile Include="..\src\messagebus.cc" />
+    <ClCompile Include="..\src\settingsstore.cc" />
+    <ClCompile Include="..\src\socketserver.cc" />
+    <ClCompile Include="..\src\socketconnection.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\messagebus.inl-cc" />
+    <None Include="..\src\SConscript" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Todo.txt" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B7B7E42A-0367-491F-86D3-1BEA0ADEF404}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>cd ..
+scons</NMakeBuildCommandLine>
+    <NMakeOutput>..\build\op2p.exe</NMakeOutput>
+    <NMakeCleanCommandLine>cd ..
+scons -c</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;ASIO_STANDALONE;ASIO_HAS_IOCP;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\include;..\deps\asio\include;..\deps\CDataFile\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>scons</NMakeBuildCommandLine>
+    <NMakeOutput>build\op2p.exe</NMakeOutput>
+    <NMakeCleanCommandLine>scons -c</NMakeCleanCommandLine>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

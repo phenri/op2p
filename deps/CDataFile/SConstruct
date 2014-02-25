@@ -1,0 +1,5 @@
+VariantDir('lib', 'src', duplicate=0)
+SConscript('lib/SConscript')
+
+VariantDir('test', 'src/test', duplicate=0)
+SConscript('test/SConscript')

@@ -1,0 +1,10 @@
+#    -*- mode: org -*-
+
+* DONE Check all dtors to ensure they don't throw
+  CLOSED: [2014-02-18 Tue 14:31]
+* DONE Cross-thread synchronization
+  CLOSED: [2014-02-18 Tue 14:31]
+* TODO Create UCI & CEP protocol parsers
+* TODO Create UCI->CEP and CEP->UCI converters
+* TODO Error handling!
+* TODO Possibly reimplement main console I/O loop and message bus as Asio services to get everything playing nicely.

@@ -1,0 +1,39 @@
+# Compiled object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Compiled executables & debug files (Windows)
+*.exe
+*.pdb
+
+# Emacs artifacts
+*~
+\#*\#
+TAGS
+
+# SCons artifacts
+.sconsign.dblite
+
+# Visual Studio artifacts
+*.suo
+*.sdf
+*.opensdf
+Debug
+Release
+obj
+
+# Other build objects
+build
