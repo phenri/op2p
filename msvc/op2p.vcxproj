@@ -16,6 +16,8 @@
     <ClInclude Include="..\include\message.hh" />
     <ClInclude Include="..\include\messagebus.hh" />
     <ClInclude Include="..\include\messagereceiver.hh" />
+    <ClInclude Include="..\include\protocolhandler.hh" />
+    <ClInclude Include="..\include\protocolhandlerfactory.hh" />
     <ClInclude Include="..\include\settings.hh" />
     <ClInclude Include="..\include\settingsstore.hh" />
     <ClInclude Include="..\include\socketconnectionclosedmessage.hh" />
@@ -23,21 +25,28 @@
     <ClInclude Include="..\include\socketoutputmessage.hh" />
     <ClInclude Include="..\include\socketserver.hh" />
     <ClInclude Include="..\include\socketconnection.hh" />
+    <ClInclude Include="..\include\ucihandler.hh" />
+    <ClInclude Include="..\include\xboardhandler.hh" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\consolemanager.cc" />
     <ClCompile Include="..\src\main.cc" />
     <ClCompile Include="..\src\messagebus.cc" />
+    <ClCompile Include="..\src\protocolhandlerfactory.cc" />
     <ClCompile Include="..\src\settingsstore.cc" />
     <ClCompile Include="..\src\socketserver.cc" />
     <ClCompile Include="..\src\socketconnection.cc" />
+    <ClCompile Include="..\src\ucihandler.cc" />
+    <ClCompile Include="..\src\xboardhandler.cc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\include\messagebus.inl-cc" />
     <None Include="..\src\SConscript" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Todo.txt" />
+    <Text Include="..\doc\interfacing.txt" />
+    <Text Include="..\doc\Todo.txt" />
+    <Text Include="..\doc\uci_spec.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B7B7E42A-0367-491F-86D3-1BEA0ADEF404}</ProjectGuid>

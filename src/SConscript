@@ -5,7 +5,8 @@ ldflags = None
 libs    = ['CDataFile']
 libpath = ['../deps/CDataFile/lib']
 source  = ['main.cc', 'socketserver.cc', 'socketconnection.cc', 'settingsstore.cc',
-           'consolemanager.cc', 'messagebus.cc']
+           'consolemanager.cc', 'messagebus.cc', 'protocolhandlerfactory.cc',
+           'ucihandler.cc', 'xboardhandler.cc']
 cpppath = ['../include', '../deps/asio/include',
            '../deps/CDataFile/include']
 target  = 'op2p'

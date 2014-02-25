@@ -12,7 +12,7 @@ namespace op2p {
     std::thread worker_;
     asio::signal_set signals_;
 
-    void awaitStopAsync();
+    void registerSignalHandler();
 
   public:
     ConsoleManager();

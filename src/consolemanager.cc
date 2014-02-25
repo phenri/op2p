@@ -4,6 +4,7 @@
 #include "socketserver.hh"
 #include "consoleoutputmessage.hh"
 #include "socketoutputmessage.hh"
+#include "protocolhandlerfactory.hh"
 #include <signal.h>
 #include <iostream>
 #include <string>
@@ -28,12 +29,20 @@ void ConsoleManager::receive(const std::shared_ptr<Message>& pMessage) {
 }
 
 void ConsoleManager::run() {
-  awaitStopAsync();
+  registerSignalHandler();
 
   MessageBus::instance()->subscribe<ConsoleOutputMessage>(this);
 
   SettingsStore ss;
   ss.load();
+
+  std::string line;
+  if (!std::getline(std::cin, line)) return;
+  
+  auto protoHandler = ProtocolHandlerFactory::instance()->handler(line);
+  if (!protoHandler) {
+    // TODO: Print error message and exit
+  }
 
   auto settings = ss.settings();
   SocketServer server{ settings, service_ };
@@ -42,15 +51,14 @@ void ConsoleManager::run() {
     // No remote host, start the server.
     server.start();
   }
-
-  std::string line;
+  
   while (std::getline(std::cin, line)) {
     MessageBus::instance()->publish<SocketOutputMessage>(
       SocketOutputMessage::create(line));
   }
 }
 
-void ConsoleManager::awaitStopAsync() {
+void ConsoleManager::registerSignalHandler() {
   signals_.add(SIGINT);
   signals_.add(SIGTERM);
 #if defined(SIGQUIT)

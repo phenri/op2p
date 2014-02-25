@@ -6,14 +6,9 @@
 
 namespace op2p {
   class SettingsStore {
-    // static constexpr char* fileName { "op2p.ini" };
-    const char* fileName { "op2p.ini" };
-    const Settings defaultSettings {
-      "Twas brillig, and the slithy toves did gyre and gimble in the wabe",
-      "localhost",
-      "8000",
-      ""
-    };
+    static const std::string fileName_;
+    static const Settings    defaultSettings_;
+
     cdf::CDataFile dataFile_;
     Settings       settings_;
 

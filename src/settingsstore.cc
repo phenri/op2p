@@ -2,17 +2,26 @@
 
 using namespace op2p;
 
+const std::string SettingsStore::fileName_{ "op2p.ini" };
+
+const Settings SettingsStore::defaultSettings_{
+  "Twas brillig, and the slithy toves did gyre and gimble in the wabe",
+  "localhost",
+  "8000",
+  ""
+};
+
 SettingsStore::SettingsStore()
   : dataFile_(),
-    settings_(defaultSettings) {
+    settings_(defaultSettings_) {
 }
 
 void SettingsStore::load() {
-  if (dataFile_.Load(fileName)) {
+  if (dataFile_.Load(fileName_)) {
     populateSettings();
   } else {
     populateDataFile();
-    dataFile_.SetFileName(fileName);
+    dataFile_.SetFileName(fileName_);
     dataFile_.Save();
   }
 }
