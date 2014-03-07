@@ -26,8 +26,8 @@ namespace op2p {
     explicit SocketConnection(asio::io_service&, const std::string&);
     virtual ~SocketConnection();
 
-    void open(std::unique_ptr<asio::ip::tcp::socket>&);
-    void close();
+    void         open(std::unique_ptr<asio::ip::tcp::socket>&);
+    void         close();
     virtual void receive(const std::shared_ptr<Message>&) override;
   };
 }

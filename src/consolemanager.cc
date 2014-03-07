@@ -2,6 +2,7 @@
 #include "messagebus.hh"
 #include "settingsstore.hh"
 #include "socketserver.hh"
+#include "socketclient.hh"
 #include "consoleoutputmessage.hh"
 #include "socketoutputmessage.hh"
 #include "protocolhandlerfactory.hh"
@@ -39,22 +40,23 @@ void ConsoleManager::run() {
   std::string line;
   if (!std::getline(std::cin, line)) return;
   
-  auto protoHandler = ProtocolHandlerFactory::instance()->handler(line);
-  if (!protoHandler) {
+  auto handler = ProtocolHandlerFactory::instance()->handler(line);
+  if (!handler) {
     // TODO: Print error message and exit
   }
 
   auto settings = ss.settings();
   SocketServer server{ settings, service_ };
+  SocketClient client{ settings, service_ };
 
   if (settings.remoteHost == "") {
-    // No remote host, start the server.
     server.start();
+  } else {
+    client.connect();
   }
   
   while (std::getline(std::cin, line)) {
-    MessageBus::instance()->publish<SocketOutputMessage>(
-      SocketOutputMessage::create(line));
+    handler->exec(line);
   }
 }
 

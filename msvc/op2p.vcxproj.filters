@@ -75,6 +75,9 @@
     <ClInclude Include="..\include\xboardhandler.hh">
       <Filter>Header Files\Protocol Handlers</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\socketclient.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cc">
@@ -103,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="..\src\xboardhandler.cc">
       <Filter>Source Files\Protocol Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\socketclient.cc">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

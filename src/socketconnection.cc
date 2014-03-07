@@ -72,9 +72,8 @@ void SocketConnection::handleReadLine(const asio::error_code& error, std::size_t
   std::getline(is, line);
 
   if (authenticated_) {
-    //MessageBus::instance()->publish(SocketInputMessage{ line });
-    MessageBus::instance()->publish<ConsoleOutputMessage>(
-      ConsoleOutputMessage::create(line));
+    MessageBus::instance()->publish<SocketInputMessage>(
+      SocketInputMessage::create(line));
 
     readLineAsync();
   } else {

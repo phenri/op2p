@@ -20,6 +20,7 @@
     <ClInclude Include="..\include\protocolhandlerfactory.hh" />
     <ClInclude Include="..\include\settings.hh" />
     <ClInclude Include="..\include\settingsstore.hh" />
+    <ClInclude Include="..\include\socketclient.hh" />
     <ClInclude Include="..\include\socketconnectionclosedmessage.hh" />
     <ClInclude Include="..\include\socketinputmessage.hh" />
     <ClInclude Include="..\include\socketoutputmessage.hh" />
@@ -34,6 +35,7 @@
     <ClCompile Include="..\src\messagebus.cc" />
     <ClCompile Include="..\src\protocolhandlerfactory.cc" />
     <ClCompile Include="..\src\settingsstore.cc" />
+    <ClCompile Include="..\src\socketclient.cc" />
     <ClCompile Include="..\src\socketserver.cc" />
     <ClCompile Include="..\src\socketconnection.cc" />
     <ClCompile Include="..\src\ucihandler.cc" />
